@@ -36,6 +36,14 @@ Feature: Navigation Drawer
     Then I see the text "Settings"
     And I take a screenshot
 
-  Scenario: I can open the drawer via swipe
-    When I swipe right
+  Scenario: I can open the drawer via swipe right
+  # When I swipe right  # doesn't work because "swipe" does not start at the bezel!
+    When I drag from 0:50 to 60:50 moving with 10 steps
     Then I see the text "Node 2013"
+
+  Scenario: I can close the drawer via swipe left
+    Given my app is running
+    And I press "Navigate up"
+    And I see the text "Node 2013"
+    When I drag from 60:50 to 0:50 moving with 10 steps
+    Then I don't see the text "Node 2013"
